@@ -15,6 +15,7 @@ import javax.crypto.SecretKey;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -34,7 +35,7 @@ public class JwtTokenProvider {
      * Access Token을 생성
      * 토큰에는 userId, username, email, roles 등 사용자 상세 정보가 Claims로 포함
      */
-    public String createAccessToken(Long userId, String username, String email, List<String> roles) {
+    public String createAccessToken(UUID userId, String username, String email, List<String> roles) {
 
         Instant nowInstant = Instant.now();
         Instant expirationInstant = nowInstant.plusMillis(accessTokenExpiration);
@@ -57,7 +58,7 @@ public class JwtTokenProvider {
      * Refresh Token을 생성
      * 토큰에는 userId만 포함, 긴 만료 시간
      */
-    public String createRefreshToken(Long userId) {
+    public String createRefreshToken(UUID userId) {
 
         Instant nowInstant = Instant.now();
         Instant expirationInstant = nowInstant.plusMillis(refreshTokenExpiration);
@@ -97,7 +98,7 @@ public class JwtTokenProvider {
         return false;
     }
 
-    public Long getUserIdFromToken(String token) {
+    public UUID getUserIdFromToken(String token) {
 
         // 토큰에서 Claims를 추출
         Claims claims = Jwts.parser()
@@ -107,6 +108,6 @@ public class JwtTokenProvider {
                 .getBody();
 
         // "userId" 클레임을 Long 타입으로 추출
-        return claims.get("userId", Long.class);
+        return claims.get("userId", UUID.class);
     }
 }
