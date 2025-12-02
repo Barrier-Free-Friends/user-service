@@ -50,4 +50,26 @@ public class JwtTokenProvider {
                 .signWith(key)
                 .compact();
     }
+
+    // JwtTokenProvider.java
+
+    /**
+     * Refresh Token을 생성
+     * 토큰에는 userId만 포함, 긴 만료 시간
+     */
+    public String createRefreshToken(Long userId) {
+
+        Instant nowInstant = Instant.now();
+        Instant expirationInstant = nowInstant.plusMillis(refreshTokenExpiration);
+
+        Date issuedAtDate = Date.from(nowInstant);
+        Date expirationDate = Date.from(expirationInstant);
+
+        return Jwts.builder()
+                .claim("userId", userId)
+                .issuedAt(issuedAtDate)
+                .expiration(expirationDate)
+                .signWith(key)
+                .compact();
+    }
 }
