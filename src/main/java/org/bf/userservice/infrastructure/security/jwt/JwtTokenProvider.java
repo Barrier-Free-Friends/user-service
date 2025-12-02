@@ -25,10 +25,10 @@ public class JwtTokenProvider {
     private final long accessTokenExpiration;
     private final long refreshTokenExpiration;
 
-    public JwtTokenProvider(@Value("${jwt.secret}") String key, @Value("${jwt.access-token-expiration}") long accessTokenExpiration, @Value("${jwt.refresh-token-expiration}") long refreshTokenExpiration) {
+    public JwtTokenProvider(@Value("${jwt.secret}") String key, @Value("${jwt.access-token-expiration}") String accessTokenExpiration, @Value("${jwt.refresh-token-expiration}") String refreshTokenExpiration) {
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(key));
-        this.accessTokenExpiration = accessTokenExpiration;
-        this.refreshTokenExpiration = refreshTokenExpiration;
+        this.accessTokenExpiration = Long.parseLong(accessTokenExpiration);
+        this.refreshTokenExpiration = Long.parseLong(refreshTokenExpiration);
     }
 
     /**
