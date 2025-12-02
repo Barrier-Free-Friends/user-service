@@ -43,6 +43,16 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
+    // Querydsl APT
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.1.0:jakarta'
+
+    // Querydsl JPA
+    implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly 'org.postgresql:postgresql'
@@ -62,3 +72,18 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+def querydslDir = layout.buildDirectory.dir("querydsl").get().asFile
+
+sourceSets {
+    main.java.srcDirs += [ querydslDir ]
+}
+
+tasks.withType(JavaCompile) {
+    options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
+}
+
+clean.doLast {
+    file(querydslDir).deleteDir()
+}
+
