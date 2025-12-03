@@ -4,8 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.bf.global.infrastructure.exception.CustomException;
 import org.bf.userservice.domain.UserErrorCode;
-import org.bf.userservice.global.infrastructure.exception.CustomException;
 
 import java.util.Objects;
 

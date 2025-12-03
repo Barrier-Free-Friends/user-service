@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.bf.userservice.global.domain.Auditable;
+import org.bf.global.domain.Auditable;
 
 import java.util.UUID;
 

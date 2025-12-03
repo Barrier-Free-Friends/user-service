@@ -2,7 +2,7 @@ package org.bf.userservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.bf.userservice.global.infrastructure.error.BaseErrorCode;
+import org.bf.global.infrastructure.error.BaseErrorCode;
 import org.springframework.http.HttpStatus;
 
 @Getter

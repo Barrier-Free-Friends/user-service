@@ -1,8 +1,8 @@
 package org.bf.userservice.presentation;
 
 import lombok.RequiredArgsConstructor;
-import org.bf.userservice.global.infrastructure.CustomResponse;
-import org.bf.userservice.global.security.SecurityUtils;
+import org.bf.global.infrastructure.CustomResponse;
+import org.bf.global.security.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,6 +1,7 @@
 package org.bf.userservice.application;
 
 import lombok.RequiredArgsConstructor;
+import org.bf.global.infrastructure.exception.CustomException;
 import org.bf.userservice.application.dto.SignInRequest;
 import org.bf.userservice.application.dto.SignUpRequest;
 import org.bf.userservice.application.dto.TokenResponse;
@@ -8,7 +9,6 @@ import org.bf.userservice.application.dto.UserResponse;
 import org.bf.userservice.domain.User;
 import org.bf.userservice.domain.UserErrorCode;
 import org.bf.userservice.domain.UserRepository;
-import org.bf.userservice.global.infrastructure.exception.CustomException;
 import org.bf.userservice.infrastructure.security.jwt.JwtTokenProvider;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
