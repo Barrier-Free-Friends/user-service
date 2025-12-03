@@ -1,3 +1,1 @@
 rootProject.name = 'user-service'
-include 'global'
-project(':global').projectDir = file('src/main/java/org/bf/userservice/global')
