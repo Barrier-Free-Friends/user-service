@@ -76,5 +76,5 @@ jobs:
             -e ENV_DB_DDL_AUTO=update \
             -e ENV_JWT_SECRET=${{ secrets.JWT_SECRET }} \
             -e ENV_ACCESS_TOKEN_EXPIRATION=${{ secrets.ACCESS_TOKEN_EXPIRATION }} \
-            -e ENV_REFRESH_TOKEN_EXPIRATIOIN=${{ secrets.REFRESH_TOKEN_EXPIRATION }} \
+            -e ENV_REFRESH_TOKEN_EXPIRATION=${{ secrets.REFRESH_TOKEN_EXPIRATION }} \
             ${{ env.IMAGE_URI }}
