@@ -58,6 +58,9 @@ dependencies {
     // 서브 모듈
     implementation project(':global')
 
+    // 서브 모듈
+    implementation project(':global')
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly 'org.postgresql:postgresql'
