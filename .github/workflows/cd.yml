@@ -21,7 +21,7 @@ jobs:
       - name: Checkout source code # 소스코드 체크 아웃
         uses: actions/checkout@v4
         with:
-          submodules: 'true'
+          submodules: recursive
           token: ${{ secrets.MY_GITHUB_TOKEN }}
           fetch-depth: 0
 
