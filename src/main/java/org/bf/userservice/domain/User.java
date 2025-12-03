@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bf.userservice.global.domain.Auditable;
 
 import java.util.UUID;
 
@@ -12,18 +13,20 @@ import java.util.UUID;
 @Getter
 @Table(name="p_user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
     private String nickname;
 
+    @Column(unique = true)
     private String username;
 
     @Builder
