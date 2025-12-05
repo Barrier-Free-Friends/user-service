@@ -1,15 +1,14 @@
 FROM bellsoft/liberica-openjdk-alpine:21
+
+# 빌드된 JAR 복사
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java", "-jar", \
-            "-DDB_URL=${ENV_DB_URL}", \
-            "-DDB_USERNAME=${ENV_DB_USERNAME}", \
-            "-DDB_PASSWORD=${ENV_DB_PASSWORD}", \
-            "-DDB_DDL_AUTO=${ENV_DB_DDL_AUTO}", \
-            "-DJWT_SECRET=${ENV_JWT_SECRET}", \
-            "-DACCESS_TOKEN_EXPIRATION=${ENV_ACCESS_TOKEN_EXPIRATION}", \
-            "-DREFRESH_TOKEN_EXPIRATION=${ENV_REFRESH_TOKEN_EXPIRATION}", \
-            "app.jar"]
+# start.sh 복사
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# 컨테이너 시작 시 start.sh 실행
+ENTRYPOINT ["/start.sh"]
 
 EXPOSE 3000
