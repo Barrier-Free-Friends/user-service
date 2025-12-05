@@ -1,11 +1,12 @@
 #!/bin/sh
+set -e
 
-# ECS 컨테이너 메타데이터에서 IP 추출
-export EUREKA_INSTANCE_HOSTNAME=$(curl -s $ECS_CONTAINER_METADATA_URI_V4 | jq -r '.Networks[0].IPv4Addresses[0]')
+# ECS 컨테이너 메타데이터에서 Task ENI IP 추출
+TASK_IP=$(curl -s $ECS_CONTAINER_METADATA_URI_V4 | jq -r '.Networks[0].IPv4Addresses[0]')
 
 # Spring Boot 실행
 java -jar \
-  -DEUREKA_INSTANCE_HOSTNAME=$EUREKA_INSTANCE_HOSTNAME \
+  -DEUREKA_INSTANCE_HOSTNAME=$TASK_IP \
   -DDB_URL=${ENV_DB_URL} \
   -DDB_USERNAME=${ENV_DB_USERNAME} \
   -DDB_PASSWORD=${ENV_DB_PASSWORD} \
