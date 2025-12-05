@@ -1,7 +1,7 @@
 name: Deploy to AWS ECS Fargate
 on:
   push:
-    branches: [ "main" ] # main 브랜치 merge 트리거 되었을 경우
+    branches: [ "dev" ] # main 브랜치 merge 트리거 되었을 경우
 
 env:
   # AWS 및 ECR 설정
