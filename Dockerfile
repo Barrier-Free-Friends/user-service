@@ -1,16 +1,15 @@
 FROM bellsoft/liberica-openjdk-alpine:21
-
-RUN apk add --no-cache curl jq
-
-# 빌드된 JAR 파일 복사
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 
-# start.sh 복사 및 실행 권한 부여
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
-# sh로 start.sh 실행
-ENTRYPOINT ["/bin/sh", "/start.sh"]
+ENTRYPOINT ["java", "-jar", \
+            "-DDB_URL=${ENV_DB_URL}", \
+            "-DDB_USERNAME=${ENV_DB_USERNAME}", \
+            "-DDB_PASSWORD=${ENV_DB_PASSWORD}", \
+            "-DDB_DDL_AUTO=${ENV_DB_DDL_AUTO}", \
+            "-DJWT_SECRET=${ENV_JWT_SECRET}", \
+            "-DACCESS_TOKEN_EXPIRATION=${ENV_ACCESS_TOKEN_EXPIRATION}", \
+            "-DREFRESH_TOKEN_EXPIRATION=${ENV_REFRESH_TOKEN_EXPIRATION}", \
+            "app.jar"]
 
 EXPOSE 3000

@@ -27,7 +27,9 @@ spring:
 eureka:
   instance:
     prefer-ip-address: false
-    hostname: ecs-load-balancer-597540403.ap-northeast-2.elb.amazonaws.com:3000
+    hostname: ecs-load-balancer-597540403.ap-northeast-2.elb.amazonaws.com
+    non-secure-port: 3000
+    health-check-url-path: /actuator/health
 
   client:
     register-with-eureka: true
