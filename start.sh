@@ -1,17 +1,18 @@
 #!/bin/sh
 set -e
 
-TASK_IP=$(curl -s $ECS_CONTAINER_METADATA_URI_V4/task | jq -r '.Networks[0].IPv4Addresses[0]')
+echo "[entrypoint] Fetching container metadata..."
+ECS_INSTANCE_IP_ADDRESS=$(curl -s "$ECS_CONTAINER_METADATA_URI" | jq -r '.Networks[0].IPv4Addresses[0]')
 
-if [ -z "$TASK_IP" ]; then
-  echo "Error: Could not retrieve Task Private IP from ECS metadata endpoint." >&2
+if [ -z "$ECS_INSTANCE_IP_ADDRESS" ]; then
+  echo "[entrypoint] Failed to retrieve ECS instance IP address."
   exit 1
 fi
 
-echo "Retrieved Task Private IP: $TASK_IP"
+export ECS_INSTANCE_IP_ADDRESS
+echo "[entrypoint] ECS_INSTANCE_IP_ADDRESS resolved as: $ECS_INSTANCE_IP_ADDRESS"
 
 java -jar \
-  -DEUREKA_INSTANCE_HOSTNAME=$TASK_IP \
   -DDB_URL=${ENV_DB_URL} \
   -DDB_USERNAME=${ENV_DB_USERNAME} \
   -DDB_PASSWORD=${ENV_DB_PASSWORD} \

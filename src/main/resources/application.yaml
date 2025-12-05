@@ -27,7 +27,7 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    hostname: ${EUREKA_INSTANCE_HOSTNAME}
+    ip-address: ${ECS_INSTANCE_IP_ADDRESS}
 
   client:
     register-with-eureka: true
