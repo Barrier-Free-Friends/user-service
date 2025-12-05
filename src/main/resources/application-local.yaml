@@ -27,15 +27,13 @@ spring:
 eureka:
   instance:
     prefer-ip-address: false
-    hostname: ecs-load-balancer-597540403.ap-northeast-2.elb.amazonaws.com
-    non-secure-port: 3000
-    health-check-url-path: /actuator/health
+    hostname: localhost
 
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://52.79.151.83:3150/eureka/
+      defaultZone: http://34.47.77.34:3150/eureka/
 
 # OPEN DOC API 설정
 springdoc:
