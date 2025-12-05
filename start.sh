@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # ECS 컨테이너 메타데이터에서 IP 추출
 export EUREKA_INSTANCE_HOSTNAME=$(curl -s $ECS_CONTAINER_METADATA_URI_V4 | jq -r '.Networks[0].IPv4Addresses[0]')
@@ -14,4 +14,3 @@ java -jar \
   -DACCESS_TOKEN_EXPIRATION=${ENV_ACCESS_TOKEN_EXPIRATION} \
   -DREFRESH_TOKEN_EXPIRATION=${ENV_REFRESH_TOKEN_EXPIRATION} \
   app.jar
-
