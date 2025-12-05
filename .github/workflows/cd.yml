@@ -28,6 +28,10 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive       # 서브모듈 포함
+          token: ${{ secrets.MY_GITHUB_TOKEN }}  # 필요 시 사용
+          fetch-depth: 0              # 전체 히스토리 가져오기
 
       - name: Set up JDK
         uses: actions/setup-java@v4
