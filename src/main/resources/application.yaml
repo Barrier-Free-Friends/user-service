@@ -26,7 +26,7 @@ spring:
 
 eureka:
   instance:
-    prefer-ip-address: false
+    prefer-ip-address: true
     hostname: ${EUREKA_INSTANCE_HOSTNAME}
 
   client:

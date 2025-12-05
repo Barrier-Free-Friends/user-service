@@ -1,10 +1,15 @@
 #!/bin/sh
 set -e
 
-# ECS 컨테이너 메타데이터에서 Task ENI IP 추출
-TASK_IP=$(curl -s $ECS_CONTAINER_METADATA_URI_V4 | jq -r '.Networks[0].IPv4Addresses[0]')
+TASK_IP=$(curl -s $ECS_CONTAINER_METADATA_URI_V4/task | jq -r '.Networks[0].IPv4Addresses[0]')
 
-# Spring Boot 실행
+if [ -z "$TASK_IP" ]; then
+  echo "Error: Could not retrieve Task Private IP from ECS metadata endpoint." >&2
+  exit 1
+fi
+
+echo "Retrieved Task Private IP: $TASK_IP"
+
 java -jar \
   -DEUREKA_INSTANCE_HOSTNAME=$TASK_IP \
   -DDB_URL=${ENV_DB_URL} \
