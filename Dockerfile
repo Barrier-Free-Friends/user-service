@@ -1,6 +1,6 @@
 FROM bellsoft/liberica-openjdk-alpine:21
 
-RUN apt-get update && apt-get install -y curl jq
+RUN apk add --no-cache curl jq
 
 # 빌드된 JAR 파일 복사
 ARG JAR_FILE=build/libs/*.jar
@@ -11,6 +11,6 @@ COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # sh로 start.sh 실행
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/bin/sh", "/start.sh"]
 
 EXPOSE 3000
