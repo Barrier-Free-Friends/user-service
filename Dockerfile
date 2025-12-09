@@ -12,4 +12,4 @@ ENTRYPOINT ["java", "-jar", \
             "-DREFRESH_TOKEN_EXPIRATION=${ENV_REFRESH_TOKEN_EXPIRATION}", \
             "app.jar"]
 
-EXPOSE 3000
+EXPOSE 4040

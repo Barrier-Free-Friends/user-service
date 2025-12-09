@@ -59,4 +59,4 @@ jwt:
   refresh-token-expiration: ${REFRESH_TOKEN_EXPIRATION}
 
 server:
-  port: 3000
+  port: 4040
