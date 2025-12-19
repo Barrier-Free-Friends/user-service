@@ -3,10 +3,8 @@ package org.bf.userservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing
 @ComponentScan(basePackages = {
         "org.bf.userservice",
         "org.bf.global"
@@ -14,6 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
+		String dbUrl = System.getenv("DB_URL");
+		System.out.println("현재 읽어온 DB_URL: " + dbUrl);
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
